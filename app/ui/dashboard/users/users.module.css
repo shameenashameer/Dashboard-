@@ -1,35 +1,57 @@
 .container{
-}
 
-
-/* .container{
+    background-color: var(--bgSoft);
     padding: 20px;
-    display: flex;
-    padding: 20px;
+    margin-top: 20px;
     border-radius: 10px;
-    background-color: var(--bgsoft);
-    gap: 20px;
+}
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.addbtn{
+    padding: 10px;
+    background-color: #5d57c9;
+    color: var(--text);
+    bottom: none;
+    border-radius: 5px;
     cursor: pointer;
 }
-.container:hover{
-    background-color: #2e274a;
-}
-.texts{
+.user{
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    text-align: center;
+    gap: 10px;
 }
-.number{
-    font-size: 24px;
-    font-weight: 500;
+.table{
+    width: 100%;
+    background-color: var(--bgSoft);
 }
-.details{
-    font-size: 14px;
-    font-weight: 300;
+.table td{
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
 }
-.positive{
-    color: lime;
+
+.userimg{
+    border-radius: 50%;
+    object-fit: cover;
 }
-.negative{
-    color: red;
-} */
+
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+.button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--text);
+    bottom: none;
+    cursor: pointer;
+}
+.view{
+    background-color: teal;
+}
+.delete{
+    background-color: crimson;
+}
