@@ -1,0 +1,13 @@
+.container{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 50;
+    cursor: pointer;
+}
+.title{
+padding-left: 10px;
+}
+.container:hover,.active{
+    background-color:#2e374a;
+}
