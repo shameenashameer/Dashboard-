@@ -1,6 +1,6 @@
 .container{
 
-    background-color: var(--bgSoft);
+    background-color: var(--bgsoft);
     padding: 20px;
     margin-top: 20px;
     border-radius: 10px;
@@ -25,7 +25,7 @@
 }
 .table{
     width: 100%;
-    background-color: var(--bgSoft);
+    background-color: var(--bgsoft);
 }
 .table td{
     padding: 10px;

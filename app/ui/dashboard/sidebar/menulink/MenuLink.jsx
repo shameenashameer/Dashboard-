@@ -8,7 +8,6 @@ import { MdLogout } from 'react-icons/md'
 const MenuLink = ({item}) => {
 
 const pathname=usePathname();
-console.log(pathname);
     // const href=item?.path || '/default-path';
   return (
     <>

@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 .title{
-    color: var(--textSoft);
+    color: var(--textsoft);
     font-weight: bold;
     text-transform: capitalize;
 
@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    /* color: var(--textSoft); */
+    color: var(--textsoft);
 }
 .search{
     display: flex;

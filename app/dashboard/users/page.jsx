@@ -1,14 +1,18 @@
-"use client";
+
 
 import React from "react";
 import Search from "../../ui/dashboard/search/Search";
 import styles from "../../ui/dashboard/users/users.module.css";
 import Link from "next/link";
 import Paginations from "../../ui/dashboard/paginations/Pagination";
+import { fetchUsers } from "../../lib/data";
 
 // import styles from '../ui/dashboard/users/users.module.css'
 
-const Users = ({ palceholder }) => {
+const Users = async () => {
+  
+  const users = await fetchUsers();
+  console.log(users,"gggggg");
   return (
     <>
       <div className={styles.container}>
@@ -43,7 +47,7 @@ const Users = ({ palceholder }) => {
               <td>Active</td>
               <td>
                 <div className={styles.buttons}>
-                <Link href="/">
+                <Link href="/dashboard/users/test">
 
                 <button className={`${styles.button} ${styles.view}`}>View</button>
                 </Link>
@@ -64,7 +68,7 @@ const Users = ({ palceholder }) => {
               <td>Active</td>
               <td>
                 <div className={styles.buttons}>
-                <Link href="/">
+                <Link href="/dashboard/users/test">
 
                 <button className={`${styles.button} ${styles.view}`}>View</button>
                 </Link>
