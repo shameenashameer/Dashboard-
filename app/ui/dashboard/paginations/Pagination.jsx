@@ -16,7 +16,7 @@ const Pagination = ({ count }) => {
   const hasPrev = ITEM_PER_PAGE * (parseInt(page) - 1) > 0;
 
   const hasNext = ITEM_PER_PAGE * (parseInt(page) -  1) + ITEM_PER_PAGE <count;
-console.log(count,"count");
+console.log(hasNext,"hasNext");
 console.log(ITEM_PER_PAGE,"ITEM_PER_PAGE");
   const handleChange = (type) => {
     type === "prev"
@@ -36,7 +36,7 @@ console.log(ITEM_PER_PAGE,"ITEM_PER_PAGE");
       </button>
       <button
         className={styles.button}
-        desabled={!hasNext}
+        disabled={!hasNext}
         onClick={() => handleChange("next")}
       >
         Next
