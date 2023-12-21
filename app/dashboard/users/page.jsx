@@ -1,5 +1,4 @@
-
-
+// "use client";
 import React from "react";
 import Search from "../../ui/dashboard/search/Search";
 import styles from "../../ui/dashboard/users/users.module.css";
@@ -9,10 +8,12 @@ import { fetchUsers } from "../../lib/data";
 
 // import styles from '../ui/dashboard/users/users.module.css'
 
-const Users = async () => {
-  
-  const users = await fetchUsers();
-  console.log(users,"gggggg");
+const Users = async ({ searchParams }) => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+
+  const { count, users } = await fetchUsers(q, page);
+
   return (
     <>
       <div className={styles.container}>
@@ -34,54 +35,48 @@ const Users = async () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><div className={styles.user}>
-                <img src="https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg"
-                  height={40} width={40} alt="" className={styles.userimg}/>
-                  Shameena
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>
+                  <div className={styles.user}>
+                    <img
+                      src={
+                        user.img ||
+                        "https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg"
+                      }
+                      height={40}
+                      width={40}
+                      alt=""
+                      className={styles.userimg}
+                    />
+                    {user.username}
                   </div>
-                  </td>
-              <td>5Tq0U@example.com</td>
-              <td>10/10/2022</td>
-              <td>Admin</td>
-              <td>Active</td>
-              <td>
-                <div className={styles.buttons}>
-                <Link href="/dashboard/users/test">
-
-                <button className={`${styles.button} ${styles.view}`}>View</button>
-                </Link>
-                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
-                </div>
                 </td>
-            </tr>
-            <tr>
-              <td><div className={styles.user}>
-                <img src="https://t4.ftcdn.net/jpg/03/59/58/91/360_F_359589186_JDLl8dIWoBNf1iqEkHxhUeeOulx0wOC5.jpg"
-                  height={40} width={40} alt="" className={styles.userimg}/>
-                  Shameena
+                <td>{user.email}</td>
+                <td>{user.createdAt?.toString().slice(4, 16)}</td>
+                <td>{user.Admin ? "Admin" : "Client"}</td>
+                <td>{user.Active ? "Active" : "Passive"}</td>
+                <td>
+                  <div className={styles.buttons}>
+                    <Link href={`/dashboard/users/${user.id}`}>
+                      <button className={`${styles.button} ${styles.view}`}>
+                        View
+                      </button>
+                    </Link>
+                    <button className={`${styles.button} ${styles.delete}`}>
+                      Delete
+                    </button>
                   </div>
-                  </td>
-              <td>5Tq0U@example.com</td>
-              <td>10/10/2022</td>
-              <td>Admin</td>
-              <td>Active</td>
-              <td>
-                <div className={styles.buttons}>
-                <Link href="/dashboard/users/test">
-
-                <button className={`${styles.button} ${styles.view}`}>View</button>
-                </Link>
-                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
-                </div>
                 </td>
-            </tr>
+              </tr>
+            ))}
           </tbody>
         </table>
-        <Paginations/>
+        <Paginations count={count} />
       </div>
     </>
   );
 };
 
 export default Users;
+

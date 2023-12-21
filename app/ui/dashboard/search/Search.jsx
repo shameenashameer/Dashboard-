@@ -3,31 +3,42 @@
 import React from 'react'
 import styles from './search.module.css'
 import { IoIosSearch } from "react-icons/io";
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
+import { usePathname, useSearchParams,useRouter } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
+// import { useRouter } from 'next/router';
 
-const Search = ({placeholder}) => {
+const Search = ({palceholder}) => {
   const searchParams = useSearchParams();
-  const {replace}=useRouter
+  const { replace}=useRouter();
   const pathname = usePathname();
-
-  const handleSearch=(e)=>{
+  
+  const handleSearch=useDebouncedCallback((e)=>{
     const params=new URLSearchParams(searchParams);
-    params.set("q",e.target.value);
-    replace(`${pathname}?${params}`)
+    params.set("page",1)
+    if(e.target.value) {
+
     
-  }
+    params.set("q", e.target.value);
+    }else{
+      params.delete("q")
+    }
+    replace(`${pathname}?${params.toString()}`);
+  },300);
 
 
-  // console.log(searchParams);
-  // console.log(pathname);
+  
   return (
     <div className={styles.container}>
         
         <IoIosSearch />
-        <input type="text"  placeholder={placeholder} className={styles.input} onChange={handleSearch}/>
+        <input type="text" placeholder={palceholder} className={styles.input} onChange={handleSearch}/>
     </div>
   )
 }
 
 export default Search
+
+
+
+
+
