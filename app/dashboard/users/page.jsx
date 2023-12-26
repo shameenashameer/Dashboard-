@@ -13,6 +13,7 @@ const Users = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
 
   const { count, users } = await fetchUsers(q, page);
+  console.log("user",users);
 
   return (
     <>
